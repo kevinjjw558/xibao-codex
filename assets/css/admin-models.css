@@ -1,0 +1,42 @@
+.xibao-models-admin__layout {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.xibao-models-admin__list,
+.xibao-models-admin__form {
+    flex: 1;
+    min-width: 320px;
+}
+
+.xibao-models-admin__model {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.xibao-models-admin__model img {
+    border-radius: 8px;
+    border: 1px solid #dcdcde;
+}
+
+.xibao-models-admin__icon-field {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.xibao-models-admin__icon-preview {
+    margin-top: 8px;
+}
+
+.xibao-models-admin__inline-form {
+    display: inline;
+}
+
+@media (max-width: 1200px) {
+    .xibao-models-admin__layout {
+        flex-direction: column;
+    }
+}

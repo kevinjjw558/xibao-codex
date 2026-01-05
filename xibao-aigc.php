@@ -10,6 +10,9 @@ if (!defined('ABSPATH')) {
     exit;
 }
 
+require_once plugin_dir_path(__FILE__) . 'includes/models-store.php';
+require_once plugin_dir_path(__FILE__) . 'includes/admin-models.php';
+
 final class Xibao_AIGC {
     const VERSION = '0.1.0';
     const SHORTCODE = 'xibao_aigc';
@@ -17,6 +20,7 @@ final class Xibao_AIGC {
     public static function init() {
         add_shortcode(self::SHORTCODE, [__CLASS__, 'render_shortcode']);
         add_action('wp_enqueue_scripts', [__CLASS__, 'maybe_enqueue_assets']);
+        Xibao_AIGC_Admin_Models::init();
     }
 
     public static function render_shortcode($atts = []) {
@@ -47,32 +51,7 @@ final class Xibao_AIGC {
     }
 
     private static function get_models() {
-        return [
-            [
-                'id' => 'nano-banana',
-                'name' => 'Nano Banana',
-                'desc' => 'Fast, crisp image generation with balanced detail.',
-                'badge' => 'NEW',
-                'icon_url' => 'https://via.placeholder.com/40',
-                'type' => 'image',
-            ],
-            [
-                'id' => 'nano-banana-2',
-                'name' => 'Nano Banana 2',
-                'desc' => 'Sharper textures and improved lighting control.',
-                'badge' => '',
-                'icon_url' => 'https://via.placeholder.com/40',
-                'type' => 'image',
-            ],
-            [
-                'id' => 'sora2',
-                'name' => 'Sora2',
-                'desc' => 'Cinematic video generation with rich motion.',
-                'badge' => 'HOT',
-                'icon_url' => 'https://via.placeholder.com/40',
-                'type' => 'video',
-            ],
-        ];
+        return Xibao_AIGC_Models_Store::get_enabled_models();
     }
 }
 
